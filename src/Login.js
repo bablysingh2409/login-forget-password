@@ -1,15 +1,41 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    let email = localStorage.getItem('Email');
+    if (email) {
+      setEmail(email);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('Email', email);
+  }, [email]);
+
   return (
-    <div>
+    <>
       <h1>Login To The Portal</h1>
-      <form>
-        <input type="text" placeholder="Enter Email..." />
-        <input type="password" placeholder="Enter Password.." />
-        <button>Login</button>
-      </form>
-    </div>
+
+      <input
+        type="text"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter Email..."
+      />
+      <br />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Enter Password.."
+      />
+      <br />
+      <button>Login</button>
+      <br></br>
+    </>
   );
 }
 
