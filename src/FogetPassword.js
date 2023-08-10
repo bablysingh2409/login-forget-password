@@ -1,18 +1,8 @@
-import { useState, useEffect } from 'react';
+import useLocalStorage from './useLocalStorage';
 
 function FogetPassword() {
-  const [email, setEmail] = useState('');
+  const { email, setEmail } = useLocalStorage();
 
-  useEffect(() => {
-    let email = localStorage.getItem('Email');
-    if (email) {
-      setEmail(email);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('Email', email);
-  }, [email]);
   return (
     <>
       <h2>Reset Your Password</h2>
